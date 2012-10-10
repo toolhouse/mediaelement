@@ -21,11 +21,13 @@ mejs.Utility = {
 			path = '',
 			name = '',
 			script,
-			scripts = document.getElementsByTagName('script');
+			scripts = document.getElementsByTagName('script'),
+			il = scripts.length,
+			jl = scriptNames.length;
 
-		for (; i < scripts.length; i++) {
+		for (; i < il; i++) {
 			script = scripts[i].src;
-			for (j = 0; j < scriptNames.length; j++) {
+			for (j = 0; j < jl; j++) {
 				name = scriptNames[j];
 				if (script.indexOf(name) > -1) {
 					path = script.substring(0, script.indexOf(name));
@@ -81,6 +83,29 @@ mejs.Utility = {
 		
 		return tc_in_seconds;
 	},
+	
+
+	convertSMPTEtoSeconds: function (SMPTE) {
+		if (typeof SMPTE != 'string') 
+			return false;
+
+		SMPTE = SMPTE.replace(',', '.');
+		
+		var secs = 0,
+			decimalLen = (SMPTE.indexOf('.') != -1) ? SMPTE.split('.')[1].length : 0,
+			multiplier = 1;
+		
+		SMPTE = SMPTE.split(':').reverse();
+		
+		for (var i = 0; i < SMPTE.length; i++) {
+			multiplier = 1;
+			if (i > 0) {
+				multiplier = Math.pow(60, i); 
+			}
+			secs += Number(SMPTE[i]) * multiplier;
+		}
+		return Number(secs.toFixed(decimalLen));
+	},	
 	
 	/* borrowed from SWFObject: http://code.google.com/p/swfobject/source/browse/trunk/swfobject/src/swfobject.js#474 */
 	removeSwf: function(id) {

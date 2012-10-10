@@ -1,4 +1,4 @@
-# GOAL: Make `<video>` and `<audio>` easy. One file. Any browser. Same UI.
+# `<video>` and `<audio>` made easy. One file. Any browser. Same UI.
 
 * Author: John Dyer [http://j.hn/](http://j.hn/)
 * Website: [http://mediaelementjs.com/](http://mediaelementjs.com/)
@@ -6,7 +6,7 @@
 * Meaning: Please use this everywhere and it'd be swell if you'd 
 link back here.
 * Thanks: my employer, [Dallas Theological Seminary](http://www.dts.edu/)
-* Contributors: [mikesten](https://github.com/mikesten), [sylvinus](https://github.com/sylvinus), [mattfarina](https://github.com/mattfarina), [romaninsh](https://github.com/romaninsh), [fmalk](https://github.com/fmalk), [jeffrafter](https://github.com/jeffrafter), [sompylasar](https://github.com/sompylasar), [andyfowler](https://github.com/andyfowler), [RobRoy](https://github.com/RobRoy), [jakearchibald](https://github.com/jakearchibald), [seanhellwig](https://github.com/seanhellwig), [CJ-Jackson](https://github.com/CJ-Jackson), [kaichen](https://github.com/kaichen), [gselva](https://github.com/gselva), [erktime](https://github.com/erktime), [bradleyboy](https://github.com/bradleyboy), [kristerkari](https://github.com/kristerkari), [rmhall](https://github.com/rmhall)
+* Contributors: [mikesten](https://github.com/mikesten), [sylvinus](https://github.com/sylvinus), [mattfarina](https://github.com/mattfarina), [romaninsh](https://github.com/romaninsh), [fmalk](https://github.com/fmalk), [jeffrafter](https://github.com/jeffrafter), [sompylasar](https://github.com/sompylasar), [andyfowler](https://github.com/andyfowler), [RobRoy](https://github.com/RobRoy), [jakearchibald](https://github.com/jakearchibald), [seanhellwig](https://github.com/seanhellwig), [CJ-Jackson](https://github.com/CJ-Jackson), [kaichen](https://github.com/kaichen), [gselva](https://github.com/gselva), [erktime](https://github.com/erktime), [bradleyboy](https://github.com/bradleyboy), [kristerkari](https://github.com/kristerkari), [rmhall](https://github.com/rmhall), [tantalic](https://github.com/tantalic), [madesign](http://github.com/madesign), [aschempp](http://github.com/aschempp), [gavinlynch](https://github.com/gavinlynch), [Birol2010](http://github.com/Birol2010)
 
 
 ## Installation and Usage
@@ -78,15 +78,96 @@ You can use this as a standalone library if you wish, or just stick with the ful
 
 *Proposed features*
 
-* horizontal, inline volume control
 * deeper WebVTT support (alignment, color, etc.) - include captionator, remove google translate?
 * Full support for Ender.js, including mediaelement-and-player-standalone which includes ender.
 * quality switcher (low, high, normal)
-* loading state on loading bar (animated?)
 * thin line when controls are off
 * system-wide events
 * playlist builder
 * Ogg/Theora playback
+
+*2.9.5 (2012/09/26)*
+
+* Fixed faulty FlashMediaElement.swf (due to Git program mashing it)
+* Fixed track element issues introduced by DFXP captions
+
+*2.9.4 (2012/09/24)*
+
+* Improved RTMP parsing [pansapien] https://github.com/johndyer/mediaelement/pull/574
+* Added `flashStreamer` option to separate streamer from file
+* Raise an error for unknown video size in Flash [denmarkin] https://github.com/johndyer/mediaelement/pull/571
+* Fix for alwaysShowControls with keyboard interaction [peterh-capella] https://github.com/johndyer/mediaelement/pull/569
+* Support for DFXP captions [justinl-capella] https://github.com/johndyer/mediaelement/pull/420
+
+*2.9.3 (2012/08/23) *
+
+* Allows use of `style="max-width: 100%;"` for responsive video
+* Added type to source buttons in mep-feature-sourcechooser.js:48 [flamadiddle ]
+* Fix use of inArray and $ in src/js/me-shim.js [lftl, Seb33300, eusonic and others] (this was a regression bug from another fix)
+* Fixing syntax error in events demo [JeffreyATW]
+
+*2.9.2 (2012/07/06) *
+
+* Added a few height checks (from Joe Anderson)
+* Removed console.log statements
+* Better file MIME type detection when the "type" attribute is not set (Seb33300)
+* Pass the event keyCode to the keyActions handler, and make seek interval configurable (bborn)
+* Responsive flash fix, YouTube edits (heikki)
+* New `auto_plugin` mode that starts with plugins then tries HTML5 (savil)
+
+*2.9.1 (2012/06/01)*
+
+* Fixed Firefox 10+ Fullscreen error
+
+*2.9.0 (2012/05/31)*
+
+* Fixed pointer-events detection in IE9 (when using Flash mode or YouTube)
+* YouTube now shows annotations (using YouTube player rather than chromeless)
+* Fix play/pause when clicking on video when overlays are displayed [markomarkovic]
+* Dont listen to mouse events when there's not a reason to [neverarriving]
+* Adding CSS animated buffer to the time rail [neverarriving]
+* Fix for box-sizing: border-box from cutting off time text. [MatthewCallis]
+
+*2.8.2 (2012/05/15)*
+
+* Fixed volume slider bug when initially hidden
+* Fixed YouTube size problems in Flash mode
+
+*2.8.1 (2012/04/19)*
+
+* Flash fullscreen: video not fullsized
+* Flash fullscreen: youtube controls not working
+
+*2.8.0 (2012/04/17)*
+
+* Revamped YouTube to work using the Flash shim so that it supports fullscreen
+* Fix for `remove()` method (lennym)
+* Fix possible issue with ContextMenu ( quangvhg)
+* Fix for stop button ( slavva97)
+* Type on `var` and `;` (lennym)
+* Fix for keyboard support forward and backward (myffical)
+
+*2.7.0 (2012/03/12)*
+
+* Added horizontal volume control, the new default for audio (based on work by [gavinlynch](http://github.com/gavinlynch))
+* Possible issues with &lt; IE8 centering resolved
+* Full set of controls under Silverlight ([Birol2010](https://github.com/Birol2010/))
+* YouTube fix [raknam]
+* shim now has a .tagName property, and other DOM-like methods [tantalic]
+* Poster display fix when HTML5, Flash, and Silverlight are all missing	 [bruha]
+* Source Chooser plugin [markomarkovic]
+* Fix for flash audio mute [lbernau]
+
+*2.6.5 (2012/02/01)*
+
+* Removed iOS 3.x poster code [xtat] [James Cross]
+* Fixed bug when player is initially hidden in `display:none;`
+* Workaround for when inside an `<iframe>` and Chrome doesn't correctly report exiting from fullscreen
+
+*2.6.4 (2012/01/10)*
+
+* Fixed a Flash bug when one video ended and another was loaded through `setSrc()` and `load()`
+* Option for markup between current time and duration [tantalic]
 
 *2.6.3 (2012/01/08)*
 
