@@ -48,6 +48,10 @@ mejs.MediaPluginBridge = {
 			bufferedTime,
 			pluginMediaElement = this.pluginMediaElements[id];
 
+		if(!pluginMediaElement){
+            return;
+        }
+        
 		// fake event object to mimic real HTML media event.
 		e = {
 			type: eventName,
@@ -616,6 +620,8 @@ mejs.HtmlMediaElementShim = {
 		}
 		// hide original element
 		htmlMediaElement.style.display = 'none';
+		// prevent browser from autoplaying when using a plugin
+		htmlMediaElement.removeAttribute('autoplay');
 
 		// FYI: options.success will be fired by the MediaPluginBridge
 		
